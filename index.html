@@ -1,0 +1,544 @@
+<html>
+
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap --> 
+    <meta charset="utf-8">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="handlebars.js"></script>
+    <script src="jquery.js"></script>
+    <script src="underscore.js"></script>
+    <script src="dateformat.js"></script>
+    <style type="text/css">
+      html {
+        overflow-y:scroll;
+      }
+
+body,tr {
+          text-align: left;
+          font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+          font-size: 15px;
+          font-weight: 300;
+          background-color: #fdfdfd;
+      }
+
+body {
+  padding-top: 45px;
+}
+body tr.current {
+  border: 2px solid rgb(53, 150, 189);
+}
+
+ body tr td.nextclass {
+  padding: 0;
+  border: 2px solid rgb(53, 150, 189);
+}
+body tr td.nextclass div {
+  font-size: 18px;
+  text-align: center;
+  background: rgb(53, 150, 189);
+  color: white;
+  padding: 3px;
+}
+
+a[name] {
+  padding-top: 55px;
+  margin-top: -55px;
+  display: inline-block; /* required for webkit browsers */
+}
+
+      </style>
+
+
+<script type="text/javascript">
+    function update_dates() {
+        var holidays = ['09/07/15', '11/02/15', '11/03/15', '11/26/15',  '11/27/15', '12/24/15'];
+        var curClass = new Date(2015,8,9,14,40,0,0);
+        var lastClass = new Date(2015,11,12,14,40,0,0);        
+        var spans = document.getElementsByClassName("date");
+        var lastClassWasBefore = true;
+        var tostr = function(dt) { return dateFormat(dt, 'dddd<br/>m/d') };
+        var nextClassFunc = (function() {
+          var gap = 5;
+          return function(dt) {
+            var newdt = new Date(dt.getTime() + (24 * 60 * 60 * gap * 1000));
+            gap = (gap === 5)? 2: 5;
+            return newdt;
+          };
+        })();
+
+        for (i = 0; i < spans.length; i++) {
+            var dayString = tostr(curClass);
+            if (_.contains(holidays, dayString)) {
+              curClass = nextClassFunc(curClass);
+              dayString = tostr(curClass);
+            }
+
+            if (0) {
+              var holiday = false;   
+              do {
+                  holiday = false;
+                  for (j = 0; j < holidays.length; j++) {
+                      if (holidays[j] == dayString)
+                          holiday = true;
+                  }
+                  if (holiday) {
+                      curClass = new Date(curClass.getTime() + (24 * 60 * 60 * gap * 1000));
+                      if (gap == 5) { gap = 2; } else { gap = 5; }
+                      dayString = dateFormat(curClass,'m/d/yy');
+                  }
+              } while (holiday);
+            }
+            var now = new Date();
+            spans[i].innerHTML = dayString;
+            if (lastClassWasBefore && curClass.getTime() > new Date()) { // this is the next class
+                var tr = $(spans[i]).parent().parent().parent();
+                tr.addClass("current");
+                tr.before("<tr><td class='nextclass' colspan=5><div><a name='schedule'></a>Next Class!</div></td></tr>");
+                lastClassWasBefore = false;
+            }
+            curClass = nextClassFunc(curClass);
+        }
+    }
+ 
+  Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
+      lvalue = parseFloat(lvalue);
+      rvalue = parseFloat(rvalue);
+          
+      return {
+          "+": lvalue + rvalue,
+          "-": lvalue - rvalue,
+          "*": lvalue * rvalue,
+          "/": lvalue / rvalue,
+          "%": lvalue % rvalue
+      }[operator];
+  });
+      
+</script>
+<script id="entry-template" type="text/x-handlebars-template">
+  {{#each days}}
+  <tr > 
+    <td > <p > <span class="date"> </span> </td> 
+    <td>
+      <p>
+        <div >L{{math @index "+" 1}}: {{slug}} </div>
+        <div >{{title}} </div>
+      </p>
+    </td>
+    <td >
+      <p > <span >{{desc}} </span> </p>
+    </td>
+    <td >
+      <p > <span >{{{readings}}}</span> </p>
+    </td>
+    <td >
+      <p >
+      {{#if notes}}<span > Notes: {{{notes}}} </span><br/>{{/if}}
+      {{#if hw}}<span > Assigned: {{{hw}}}</span><br/>{{/if}}
+      {{#if due}}<span>  Due: {{{due}}}</span>{{/if}}
+      </p>
+    </td>
+  </tr>
+  {{/each}}
+</script>
+
+      
+<title>4111: Introduction to Databases</title>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">4111 Fall 2015</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#staff">Staff</a></li>
+              <li><a href="#grading">Grading</a></li>
+              <li><a href="#links">Links</a></li>
+              <li><a href="#schedule">Schedule</a></li>
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+<div class="container">
+
+<h2>Introduction to Databases</h2>
+
+
+<div class="row">
+  <div class="span2">
+<b>Units: </b>
+</div>
+<div class="span8"><p valign="bottom">3
+</div>
+</div>
+<div class="row">
+<div class="span2">
+<b>Instructors:</b>
+</div>
+<div class="span8"><a name="staff"></a><p valign="bottom">
+  Eugene Wu (ewu@cs.columbia.edu)
+   </div>
+</div>
+
+<div class="row">
+  <div class="span2">
+<b>Meetings:</b>
+</div>
+<div class="span8"><p valign="bottom">
+  MW 2:30-4P, Seeley W. Mudd 833 (First Meeting Weds 9/9)
+</div>
+</div>
+
+<div class="row">
+<div class="span2"><b>Description:</b></div>
+
+<div class="span8"> 
+  This class will introduce core database topics for building database-backed applications, such as 
+  data modeling, logical design of relational databases, relational algebra, and SQL.  
+  We will also introduce database internals such as query processing, query optimization,
+  physical database design, and transaction processing.
+  Students are expected to be comfortable with data structures and Python.
+</div>
+</div>
+
+<div class="row">
+<div class="span2"><b>Basic Info:</b></div>
+<div class="span8"> 
+  <a href="https://github.com/cudbg/4111-fall2015/blob/master/Syllabus.md">Syllabus and Basic Information</a>
+</div>
+</div>
+
+
+
+<br>
+<div class="row">
+<div class="span2"><a name="grading"></a><b>Grading:</b></div>
+<div class="span8"> Grading will be based on exams and successful completion of homeworks and projects.
+<br><br>
+<table class="table table-striped">
+  <!--<tr><td>Participation<td>X%-->
+  <tr><td><a href="#">Homeworks</a><td>15%
+  <tr><td><a href="#">Project 1</a><td>15%
+  <tr><td><a href="#">Project 2</a><td>5%
+  <tr><td>Midterm<td>25%
+  <tr><td>Final<td>40%
+</table>
+  <a href="https://github.com/cudbg/4111-fall2015/blob/master/Syllabus.md">See Syllabus for grading info</a>
+
+</div>
+</div>
+
+
+
+<p>
+<div class="row">
+    <div class="span2"><a name="links"></a><b>Useful links:</b>
+</div>
+    <div class="span8">Hand in assignments on <a href="http://courseworks.columbia.edu/">CourseWorks</a>.
+<br>
+Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>.
+<br>
+  Aside from personal questions, please use Piazza rather than emailing the staff!
+<br> 
+  Check out <a href="https://github.com/cudbg/4111-fall2015">the course github repository</a> 
+  (including lecture notes, code, homeworks, and slides!).
+</div>
+
+</div>
+
+
+<br>
+<h3> Class Schedule </h3>
+<div class="container">
+<a name="schedule"></a>
+<table class="table table-striped" >
+<thead>
+    <tr >
+      <th > <p > <span >Date </span> </p> </th>
+      <th > <p > <span >Topic </span> </p> </th>
+      <th > <p > <span >Objectives </span> </p> </th>
+      <th > <p > <span >Readings <br> <i>To be read before class</i> </span> </p> </th>
+      <th > <p > <span >Assignments / Notes</span> </p> </th>
+    </tr>
+</thead>
+<tbody id="schedule_body">
+</tbody>
+</table>
+</div>
+<script>
+  $(function(){
+    var source   = $("#entry-template").html();
+    var template = Handlebars.compile(source);
+    var schedule = { days: [{
+      slug: "Intro",
+      title: "Introduction and Administriva",
+      desc: "",
+      readings: "",
+      notes: ""//"<a href='www.google.com'>notes</a>"
+    },
+    {
+      slug: "Introduction to data processing",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+    {
+      slug: "Introduction to SQL",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+    {
+      slug: "Entity-Relationship Modeling 1",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+    {
+      slug: "Entity-Relationship Modeling 2",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+    {
+      slug: "Relational Model 1",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+    {
+      slug: "Relational Model 2",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+    {
+      slug: "Relational Model 3",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+    {
+      slug: "Relational Model 4",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+    {
+      slug: "Relational Algebra 1",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+    {
+      slug: "Relational Algebra 2",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+    {
+      slug: "SQL 1",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+    {
+      slug: "SQL 2",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+    {
+      slug: "SQL 3",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+    {
+      slug: "SQL 4",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+    {
+      slug: "APIs",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+    {
+      slug: "Constraints",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+    {
+      slug: "Normalization",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+    {
+      slug: "Physical Design",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+    {
+      slug: "Physical Design",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+    {
+      slug: "Query Proc 1",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+    {
+      slug: "Query Proc 2",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+    {
+      slug: "Xacts 1",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+    {
+      slug: "Xacts 2",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+    {
+      slug: "Misc",
+      title: "",
+      desc: "",
+      readings: "",
+      notes: "",
+      hw: null,
+      due: null
+    },
+
+
+
+
+
+    ]}
+
+
+    var html    = template(schedule);
+    $("#schedule_body").html(html);
+
+
+
+    update_dates();
+  });
+ 
+</script>
+
+
+<div>
+  <iframe src="https://docs.google.com/forms/d/1wJkmNw95BBjHvccxn7aYzcExm3aBnPnkNS8ktn6vKrc/viewform?embedded=true" width="900" height="700" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+</div>
+
+</body>
+</html>
+
