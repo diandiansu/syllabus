@@ -17,7 +17,7 @@ Resources
 
 * [Website](http://www.cs.columbia.edu/~ewu/4111)
 * [Piazza](https://piazza.com/class/id26ml2f2m0ju)
-* [Course Github](https://github.com/cudbg/4111-fall2015)
+* [Course Github](https://github.com/w4111/)
 
 
 Prereqs
