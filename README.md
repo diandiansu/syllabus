@@ -1,6 +1,5 @@
 # W4111 Fall 2015 Syllabus
 
-
 Instructor
 
 * Eugene Wu
@@ -8,6 +7,8 @@ Instructor
 * OH: 
 
 TAs
+
+* TBD
 
 Textbook
 
@@ -23,11 +24,11 @@ Resources
 Prereqs
 
 * COMS W3134 or W3137 (equivalent courses taken elsewhere are acceptable as well) and
-* Fluency in Python 
+* Fluency in Python or can pick it up during the class
   * basic data structures (e.g., linked lists, trees, hashtables)
   * big O notation
 * HTML/javascript will help
-* Will expect students to use tools such as ssh to work with machines in the cloud
+* Will expect students to use tools such as `ssh` to work with machines in the cloud
 * You need to get permission from the instructor if you do not have these prerequisites. 
   This course is intended for both Computer Science majors as well as non-majors.
 
@@ -36,14 +37,15 @@ Prereqs
 # Homeworks
 
 * Homework assignments must be done alone.  No collaboration is allowed.  [Don't do it](http://www.cs.columbia.edu/education/honesty)
-* Projects are in teams of 2.  Both members will recieve the same grade and should collaborate with each other.  
-  Collaboration outside of the team is not allowed. [Don't do it](http://www.cs.columbia.edu/education/honesty)
+* Projects are in teams of 2.  Both members will recieve the same grade and should collaborate with each other.  Collaboration outside of the team is not allowed. [Don't do it](http://www.cs.columbia.edu/education/honesty)
+* [See Columbia's description of academic honesty](http://www.cs.columbia.edu/education/honesty)
 
 
 Homework Submission Policy
 
 * Homework is generally due 10AM of the due date, unless indicated otherwise.
-* Unless we specify otherwise, students should submit their homework in hard copy. Homework from students may not be submitted electronically. This is a large class and the TAs cannot afford the overhead of printing out electronic homework submissions for grading.
+* Unless we specify otherwise, students should submit their homework in hard copy rather than electronically.
+  This is a large class and the TAs cannot afford the overhead of printing out electronic homework submissions for grading.
 * **Auditors**: Only students registered for course units may turn in work to be graded.
 
 
@@ -55,8 +57,8 @@ Grading Policy
 * Homework: 15% equally weighted
 * Project 1: 15% 
 * Project 2: 5% 
-* Midterm: 25% (closed book) TBA
-* Final: 40% (closed book) TBA
+* Midterm: 25% (closed book, 1/2 cheat sheet) TBA
+* Final: 40% (closed book, 1/2 cheat sheet) Last day of class 12/9
 
 Notes on grading (please read):
 <a name="cheating"></a>
@@ -99,8 +101,6 @@ Additional late day rules
 
 
 
-When submitting late homeworks
-
 Alternative procedures to submit late homework:
 
 * **(Preferred)** Bring to any office hours.
@@ -115,8 +115,8 @@ When using late days, note that homeworks tend to get harder later in the course
 # Communication
 
 * **(Perferred)**: [Piazza](https://piazza.com/class/id26ml2f2m0ju)
-* Announcements via emails using courseworks
 * **(Least Preferred)**: Email course staff.  There are too many people in the course for this to be a primary option!
+* Announcements will be on website and via emails using courseworks
 
 Contact us if there is any ambiguity in the rules.
  
