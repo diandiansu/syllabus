@@ -4,7 +4,7 @@ Instructor
 
 * Eugene Wu
 * ewu@cs.columbia.edu
-* OH: 
+* OH: Wednesdays 4 - 5PM [Schapiro CEPSR](http://www.cs.columbia.edu/resources/directions) 7LW1A  (temporary)
 
 TAs
 

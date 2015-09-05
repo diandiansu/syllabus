@@ -4,7 +4,7 @@
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap --> 
     <meta charset="utf-8">
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="lib/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="lib/handlebars.js"></script>
@@ -16,38 +16,58 @@
         overflow-y:scroll;
       }
 
-body,tr {
-          text-align: left;
-          font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-          font-size: 15px;
-          font-weight: 300;
-          background-color: #fdfdfd;
+      body,tr {
+                text-align: left;
+                font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+                font-size: 15px;
+                font-weight: 300;
+                background-color: #fdfdfd;
+            }
+
+      body {
+        padding-top: 45px;
+      }
+      body tr.current {
+        border: 2px solid rgb(53, 150, 189);
       }
 
-body {
-  padding-top: 45px;
-}
-body tr.current {
-  border: 2px solid rgb(53, 150, 189);
-}
+      body tr td.nextclass {
+        padding: 0;
+        border: 2px solid rgb(53, 150, 189);
+      }
+      body tr td.nextclass div {
+        font-size: 18px;
+        text-align: center;
+        background: rgb(53, 150, 189);
+        color: white;
+        padding: 3px;
+      }
 
- body tr td.nextclass {
-  padding: 0;
-  border: 2px solid rgb(53, 150, 189);
-}
-body tr td.nextclass div {
-  font-size: 18px;
-  text-align: center;
-  background: rgb(53, 150, 189);
-  color: white;
-  padding: 3px;
-}
+      a[name] {
+        padding-top: 55px;
+        margin-top: -55px;
+        display: inline-block; /* required for webkit browsers */
+      }
 
-a[name] {
-  padding-top: 55px;
-  margin-top: -55px;
-  display: inline-block; /* required for webkit browsers */
-}
+      td {
+        vertical-align: top;
+      }
+      .notes {
+        font-size: smaller;
+        color: grey;
+      }
+      .due {
+        width: 100%;
+        text-align: center;
+        font-size: smaller;
+        margin-bottom: .3ex;
+      }
+      .hw {
+        width: 100%;
+        text-align: center;
+        font-size: smaller;
+        margin-bottom: .3ex;
+      }
 
       </style>
 
@@ -122,23 +142,19 @@ a[name] {
   <tr > 
     <td > <p > <span class="date"> </span> </td> 
     <td>
-      <p>
         <div >L{{math @index "+" 1}}: {{slug}} </div>
         <div >{{title}} </div>
-      </p>
     </td>
     <!--<td >
       <p > <span >{{desc}} </span> </p>
     </td>-->
-    <td >
+    <td style="max-width: 200px" >
       <p > <span >{{{readings}}}</span> </p>
     </td>
     <td style="max-width: 200px;">
-      <p >
-      {{#if notes}}<span > Notes: {{{notes}}} </span><br/>{{/if}}
-      {{#if hw}}<br/><span > Assigned: {{{hw}}}</span><br/>{{/if}}
-      {{#if due}}<br/><span>  Due: {{{due}}}</span>{{/if}}
-      </p>
+      {{#if due}}<div><div style="width:100%" class="due text-warning bg-warning">Due</div>{{{due}}}</div><br/>{{/if}}
+      {{#if hw}}<div><div style="width:100%" class="hw text-info bg-info">Assigned</div>{{{hw}}}</div><br/>{{/if}}
+      {{#if notes}}<div class="notes">{{{notes}}} </div><br/><br/>{{/if}}
     </td>
   </tr>
   {{/each}}
@@ -229,9 +245,9 @@ a[name] {
 <br><br>
 <table class="table table-striped">
   <!--<tr><td>Participation<td>X%-->
-  <tr><td><a href="#">Homeworks</a><td>15%
-  <tr><td><a href="#">Project 1</a><td>15%
-  <tr><td><a href="#">Project 2</a><td>5%
+  <tr><td><a href="">Homeworks</a><td>15%
+  <tr><td><a href="">Project 1</a><td>15%
+  <tr><td><a href="">Project 2</a><td>5%
   <tr><td>Midterm<td>25%
   <tr><td>Final<td>40%
 </table>
@@ -249,8 +265,7 @@ a[name] {
     <div class="span8">Hand in most assignments on <a href="http://courseworks.columbia.edu/">CourseWorks</a>.
 <br>
 Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>.
-<br>
-  Aside from personal questions, please use Piazza rather than emailing the staff!
+<small class="text-muted">Aside from personal questions, please use Piazza rather than emailing the staff!</small>
 <br> 
   Check out <a href="https://github.com/cudbg/4111-fall2015">the course github repository</a> 
   (including lecture notes, code, homeworks, and slides!).
@@ -269,7 +284,7 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       <th > <p > <span >Date </span> </p> </th>
       <th > <p > <span >Topic </span> </p> </th>
       <!--<th > <p > <span >Objectives </span> </p> </th>-->
-      <th > <p > <span >Readings <br> <i>To be read before class</i> </span> </p> </th>
+      <th  style="max-width: 200px"> <p > <span >Readings <br> <i>To be read before class</i> </span> </p> </th>
       <th style="max-width: 200px;"> <p > <span >Assignments / Notes</span> </p> </th>
     </tr>
 </thead>
@@ -287,7 +302,7 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       desc: "",
       readings: "Chapter 1",
       notes: "",//"<a href='www.google.com'>notes</a>"
-      hw: "<a href='http://github.com/w4111/hw0'>HW0</a> due 9/14"
+      hw: "<a href='http://github.com/w4111/hw0'>HW 0</a> due 9/14"
     },
     {
       slug: "Entity-Relationship Modeling 1",
@@ -296,7 +311,8 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       readings: "Chapter 2",
       notes: "",
       hw: "<a href='#'>Project 1 Part 1</a>.  Look for teammate",
-      due: "<a href='http://github.com/w4111/hw0'>HW0</a>.  You will be removed from class if not completed on time -- no exceptions"
+      due: "<a href='http://github.com/w4111/hw0'>HW 0</a> 10AM",
+      notes: "You will be removed from class if HW0 not completed on time -- no exceptions"
     },
     {
       slug: "Entity-Relationship Modeling 2",
@@ -312,18 +328,16 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       title: "Dawn before time: non relational models. ",
       desc: "",
       readings: "Chapter 3<br/>(optional) <a href='docs/goesaround.pdf'>What goes around comes around</a>",
-      notes: "",
       hw: null,
-      due: "Project 1 Part 1 approval phase 9/21-9/25"
+      notes: "Project 1 Part 1 approval phase 9/21-9/25"
     },
     {
       slug: "Relational Model 2",
       title: "",
       desc: "",
       readings: "Chapter 3<br/>(optional) <a href='docs/codd.pdf'>Original Relational Model paper</a>",
-      notes: "",
       hw: null,
-      due: "Project 1 Part 1 approval phase 9/21-9/25"
+      notes: "Project 1 Part 1 approval phase 9/21-9/25"
     },
     {
       slug: "Relational Model 3",
@@ -331,8 +345,8 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       desc: "",
       readings: "Chapter 3<br/>(optional) <a href='docs/codd.pdf'>Original Relational Model paper</a>",
       notes: "",
-      hw: null,
-      due: "Project 1 Part 1 approval phase 9/21-9/25"
+      hw: "HW 1<br/>Project 1 Part 2",
+      due: "Project 1 Part 1 10AM" 
     },
     {
       slug: "Relational Model 4",
@@ -341,7 +355,6 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       readings: "Chapter 3<br/>(optional) <a href='docs/codd.pdf'>Original Relational Model paper</a>",
       notes: "",
       hw: null,
-      due: "Project 1 Part 1 Due 9/28 10AM" 
     },
     {
       slug: "Relational Algebra 1",
@@ -350,7 +363,7 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       readings: "Sections 4.1 and 4.2",
       notes: "",
       hw: null,
-      due: "HW1"
+      due: "HW 1 10AM"
     },
 
     {
@@ -369,7 +382,7 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       desc: "",
       readings: "Chapter 5",
       notes: "",
-      hw: null,
+      hw: "HW 2",
       due: null
     },
     {
@@ -378,8 +391,8 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       desc: "",
       readings: "Chapter 5",
       notes: "",
-      hw: null,
-      due: "Project 1 Part 2 Due 10AM"
+      hw: "Project 1 Part 3",
+      due: "Project 1 Part 2 10AM"
     },
 
     {
@@ -397,8 +410,7 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       desc: "",
       readings: "Chapter 5",
       notes: "",
-      hw: null,
-      due: null
+      due: "HW 2 Due 10AM.  <div class='notes'>No late submission accepted beyond 10/23 10AM, regardless of late days.</div>"
     },
 
     {
@@ -408,7 +420,6 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       readings: "Chapter 6",
       notes: "",
       hw: null,
-      due: "HW2 Due 10AM.  No late submission accepted beyond 10/23 10AM, regardless of late days."
     },
 
     {
@@ -450,8 +461,7 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       desc: "",
       readings: "Chapter 19 except 19.6.2, 19.8",
       notes: "",
-      hw: null,
-      due: null
+      hw: "HW 3",
     },
 
     {
@@ -470,8 +480,7 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       desc: "",
       readings: "Chapter 8 (level of detail covered in class)",
       notes: "",
-      hw: null,
-      due: "Project 1 Part 3 Due 10AM"
+      due: "Project 1 Part 3 10AM"
     },
 
     {
@@ -480,8 +489,7 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       desc: "",
       readings: "Chapter 12 (level of detail covered in class)<br/>(Optional)<a href='docs/selinger.pdf'>Access Path Selection in a Relational Database Management System</a>",
       notes: "",
-      hw: null,
-      due: null
+      hw: "Project 2",
     },
     {
       slug: "Query Proc 2",
@@ -489,8 +497,8 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       desc: "",
       readings: "Chapter 12 (level of detail covered in class)<br/>(Optional)<a href='docs/selinger.pdf'>Access Path Selection in a Relational Database Management System</a>",
       notes: "",
-      hw: null,
-      due: "HW3 Due 10AM"
+      hw: "HW 4",
+      due: "HW 3 10AM"
     },
 
     {
@@ -499,8 +507,6 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       desc: "",
       readings: "Chapter 16 (level of detail covered in class).  Ignore 16.5, 16.6.  ",
       notes: "",
-      hw: null,
-      due: null
     },
 
     {
@@ -510,7 +516,7 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       readings: "Chapter 16 (level of detail covered in class).  Ignore 16.5, 16.6.  ",
       notes: "",
       hw: null,
-      due: "Proj 2 Due 10AM"
+      due: "Project 2 10AM"
     },
 
     {
@@ -520,7 +526,7 @@ Discuss the class on <a href="https://piazza.com/class/id26ml2f2m0ju">Piazza</a>
       readings: "",
       notes: "",
       hw: null,
-      due: "HW4 Due 10AM"
+      due: "HW 4 10AM"
     },
 
     {
