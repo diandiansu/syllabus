@@ -10,6 +10,8 @@ TAs
 
 * TBD
 
+<iframe src="https://www.google.com/calendar/embed?src=columbia.edu_5552pjkf1resa92b2m80frtrmk%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="800" height="400" frameborder="0" scrolling="no"></iframe>
+
 Textbook
 
 *  Database Management Systems 3rd Edition by Ramakrishnan and Gehrke. 
