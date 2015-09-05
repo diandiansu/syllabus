@@ -14,7 +14,7 @@ Textbook
 
 *  Database Management Systems 3rd Edition by Ramakrishnan and Gehrke. 
 
-Resources
+Course Resources
 
 * [Website](http://www.cs.columbia.edu/~ewu/4111)
 * [Piazza](https://piazza.com/class/id26ml2f2m0ju)
@@ -33,15 +33,31 @@ Prereqs
   This course is intended for both Computer Science majors as well as non-majors.
 
 
+Programming Resources
 
-# Homeworks
+* See our [Java to Python Quick Guide](http://github.com/w4111/syllabus/java2python.MD)
+* Additional resources
+  * [Java to Python Quick Guide](http://github.com/w4111/syllabus/java2python.MD)
+  * [Python tutorial](https://docs.python.org/2/tutorial/)
+  * [Learn Python The Hard Way](http://learnpythonthehardway.org/book/)
+  * [Flask documentation](flask.pocoo.org)
+  * [Flask Tutorial](http://flask.pocoo.org/docs/0.10/tutorial/)
+  * [Jinja Template documentation](http://jinja.pocoo.org/)
+  * [Jinja Tutorial](https://realpython.com/blog/python/primer-on-jinja-templating/)
 
-* Homework assignments must be done alone.  No collaboration is allowed.  [Don't do it](http://www.cs.columbia.edu/education/honesty)
-* Projects are in teams of 2.  Both members will recieve the same grade and should collaborate with each other.  Collaboration outside of the team is not allowed. [Don't do it](http://www.cs.columbia.edu/education/honesty)
+
+
+# Assignment Collaboration Policies
+
+* Homework assignments must be done alone.  
+  * No collaboration is allowed.  [Don't do it](http://www.cs.columbia.edu/education/honesty)
+* Projects are in teams of 2.  
+  * Both members will recieve the same grade and should collaborate with each other.  
+  * Collaboration outside of the team is not allowed. [Don't do it](http://www.cs.columbia.edu/education/honesty)
 * [See Columbia's description of academic honesty](http://www.cs.columbia.edu/education/honesty)
 
 
-Homework Submission Policy
+# Homework Submission Policy
 
 * Homework is generally due 10AM of the due date, unless indicated otherwise.
 * Unless we specify otherwise, students should submit their homework in hard copy rather than electronically.
@@ -103,7 +119,7 @@ Additional late day rules
 
 Alternative procedures to submit late homework:
 
-* **(Preferred)** Bring to any office hours.
+* **(Most Preferred)** Bring to any office hours.
 * Bring to the instructor's office; if office is closed, please write the date and time on the assignment and slip it under the office door. 
   * Note that the CEPSR building is locked after hours and during the weekend.
 * **(Least preferred)** Contact a TA by email _in advance_ to make arrangements.
