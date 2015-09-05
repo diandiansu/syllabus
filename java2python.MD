@@ -3,8 +3,12 @@
 This document is a _very_ quick primer that compares the basic constructs and 
 data structures between Java and Python.
 
-Python is a great language because there is an incredible wealth of documentation and 
-tutorials for the language.
+Python is a great language for this course because it requires much fewer boiler plate code, 
+has very lightweight servers as opposed to J2EE, excellent packages, 
+a [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) and 
+an incredible wealth of documentation and tutorials for the language.  
+
+To get started see:
 
 * [Python tutorial](https://docs.python.org/2/tutorial/)
 * [Learn Python The Hard Way](http://learnpythonthehardway.org/book/)
@@ -43,6 +47,8 @@ In python, functions can be directly defined independent of class definitions:
 
         def f():
           print "Hello World"
+
+This means you can then directly call `f`:
 
         f()
 
@@ -92,8 +98,7 @@ Java:
             i = 2;
         }
 
-Python doesn't have a switch statement, so you need to use
-if/else.
+Python doesn't have a switch statement, so you need to use if/else (why does the `elif` clause contain `i = 2`?)
 
         if i == 0: 
           i = 0;
@@ -103,7 +108,7 @@ if/else.
         else: 
           i = 2
 
-### for loops
+### `for` loops
 
 
 Java has a for loop:
@@ -111,8 +116,7 @@ Java has a for loop:
         for (int i = 0; i < 100; i++) {
         }
 
-Python has a very powerful and flexible `for` loop structure.  The above
-can be mechanically translated to:
+The above can be mechanically translated to:
 
         i = 0
         while i < 100:
@@ -123,8 +127,8 @@ can be mechanically translated to:
 
 Java has a more convenient `for` loop for iterables:
 
-        List<Integer> l = ...;
-        for (int i : l) {
+        List<Integer> a_list = ...;
+        for (int i : a_list) {
           System.out.println(i);
         }
 
@@ -167,7 +171,9 @@ Java has Maps that map keys to values:
         map.put("hello", "world");
 
 Python has a similar data structure called a dictionary.  
-There are multiple ways to instantiate it:
+There are multiple ways to instantiate it (notice that you can
+directly create a data structure with initial data without resorting to
+`.put()` calls:
 
         # Method 1
         d1 = dict()
