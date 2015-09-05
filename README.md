@@ -35,7 +35,7 @@ Prereqs
 
 Programming Resources
 
-* See our [Java to Python Quick Guide](http://github.com/w4111/syllabus/java2python.MD)
+* See our [Java to Python Quick Guide](./java2python.MD)
 * Additional resources
   * [Java to Python Quick Guide](http://github.com/w4111/syllabus/java2python.MD)
   * [Python tutorial](https://docs.python.org/2/tutorial/)
